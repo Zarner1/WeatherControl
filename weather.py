@@ -15,14 +15,14 @@ def weather_get():
     data = result.json()
 
     if 'main' in data:
-        temp1=data['main']['temp']-273
+        temp1=data['main']['temp']-273.15
         temp1=round(temp1,2)
         datatext = f"Sıcaklık: {temp1} °C\nEnlem: {data['coord']['lat']}\nBoylam: {data['coord']['lon']}\nRüzgar Hızı: {data['wind']['speed']} m/s"
 
         textbig2.insert("1.0", datatext)
     else:
-        print("hava durumu verisi alinamadi")
 
+        textbig2.insert("1.0", "hava durumu verisi alinamadi")
     pass
 
 
@@ -49,21 +49,21 @@ canvas.create_text(110, 190, text="Istanbul", font=("Helvetica", 20), anchor="ce
 istanbulURL="http://api.openweathermap.org/data/2.5/weather?q=Istanbul&appid=2606f769271b8d545fe3458b2b72ed9f"
 response1=requests.get(istanbulURL)
 dataIST=response1.json()
-canvas.create_text(110,110,text=f"{round(dataIST['main']['temp']-273,2)} °C",font=("Helvetica",22),fill="Red")
+canvas.create_text(110,110,text=f"{round(dataIST['main']['temp']-273.15,2)} °C",font=("Helvetica",22),fill="Red")
 #ankara
 canvas.create_rectangle(350, 50, 475, 175, outline="blue", width=5)
 canvas.create_text(410, 190, text="Ankara", font=("Helvetica", 20), anchor="center", fill="red")
 ankaraURL="http://api.openweathermap.org/data/2.5/weather?q=Ankara&appid=2606f769271b8d545fe3458b2b72ed9f"
-response2=requests.get(istanbulURL)
+response2=requests.get(ankaraURL)
 dataANK=response2.json()
-canvas.create_text(410,110,text=f"{round(dataANK['main']['temp']-273,2)} °C",font=("Helvetica",22),fill="Red")
+canvas.create_text(410,110,text=f"{round(dataANK['main']['temp']-273.15,2)} °C",font=("Helvetica",22),fill="Red")
 #Izmır
 canvas.create_rectangle(650, 50, 775, 175, outline="blue", width=5)
 canvas.create_text(710, 190, text="Izmir", font=("Helvetica", 20), anchor="center", fill="red")
 izmirURL="http://api.openweathermap.org/data/2.5/weather?q=Izmir&appid=2606f769271b8d545fe3458b2b72ed9f"
-response3=requests.get(istanbulURL)
+response3=requests.get(izmirURL)
 dataIZM=response3.json()
-canvas.create_text(710,110,text=f"{round(dataIST['main']['temp']-273,2)} °C",font=("Helvetica",22),fill="Red")
+canvas.create_text(710,110,text=f"{round(dataIST['main']['temp']-273.15,2)} °C",font=("Helvetica",22),fill="Red")
 #şehir girme texti
 canvas.create_text(400, 375, text="Şehiri Giriniz", font=("Helvetica", 18), anchor="center", fill="Orange")
 text1 = ctk.CTkEntry(window, corner_radius=1, border_color="orange", border_width=3,
